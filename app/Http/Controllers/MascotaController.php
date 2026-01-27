@@ -23,8 +23,9 @@ class MascotaController extends Controller
             'color'=>$request->color,
             'raza'=>$request->raza
         ]);
+
    /** @var \Illuminate\Http\Client\Response\ $response*/
-    $response = Http::withoutVerifying()->post("https://nonextensional-unlocalizable-merle.ngrok-free.dev/api/jugete",[
+    $response = Http::withoutVerifying()->post(env("NGROK"),[
         'mascota_id'=>$mascota->id,
         'nombre_dulce'=>$request->nombre_dulce,
         'color_dulce'=>$request->color_dulce,
