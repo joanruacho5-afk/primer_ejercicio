@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('juguetes',function(Blueprint $table){
+        Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mascota_id');
-            $table->string('nombre_juguete');
-            $table->string('color_juguete');
-            $table->string('edad_juguete');
-            
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('images');
     }
 };

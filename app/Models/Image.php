@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class juguetes extends Model
+class Image extends Model
 {
-    protected $guarded = [];
-    
+    //
 }
