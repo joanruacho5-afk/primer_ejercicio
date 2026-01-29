@@ -18,7 +18,7 @@ class jugueteController extends Controller
         ]);
 
         
-        $response = Http::withoutVerifying()->post('https://tremulously-superloyal-mayme.ngrok-free.dev/api/create', [
+        $response = Http::withoutVerifying()->withHeaders(['Authorization'=>$request->dulce_auth])->post('https://tremulously-superloyal-mayme.ngrok-free.dev/api/create1', [
             'juguete_id'     => $juguete->id,
             'nombre_dulce'   => $request->nombre_dulce,
             'color_dulce'    => $request->color_dulce,

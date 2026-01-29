@@ -10,7 +10,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::post('/juguete/pollas',[jugueteController::class,'recibirMascota'])->middleware(ApiMiddleware::class);
+Route::post('/juguete/pollas',[jugueteController::class,'recibirMascota'])->middleware([ApiMiddleware::class,'auth:sanctum']);
 
 Route::get('/juguete/obtener/{id}',[jugueteController::class,'obtenerMascota']);
 
