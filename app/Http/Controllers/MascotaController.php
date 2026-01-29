@@ -25,7 +25,8 @@ class MascotaController extends Controller
         ]);
 
    /** @var \Illuminate\Http\Client\Response\ $response*/
-    $response = Http::withoutVerifying()->post(env("NGROK"),[
+    $response = Http::withoutVerifying()->withHeaders(['Authorization'=>$request->jugete_token])->post('https://urbanely-uncapsuled-cheyenne.ngrok-free.dev/api/juguete/pollas',[
+        'dulce_auth'=>$request->dulce_token,
         'mascota_id'=>$mascota->id,
         'nombre_dulce'=>$request->nombre_dulce,
         'color_dulce'=>$request->color_dulce,
@@ -35,9 +36,21 @@ class MascotaController extends Controller
         'edad_jugete'=>$request->edad_jugete
     ]); 
     return response()->json([
+        'mascota'=>$mascota,
         'data'=>$response->json(),
         'message'=>'el juegete'
     ],200);
     
+    }
+
+        public function index($id){
+        $mascota = Mascota::find($id);
+        /** @var \Illuminate\Http\Client\Response\ $response*/
+    $response = Http::withoutVerifying()->get('https://urbanely-uncapsuled-cheyenne.ngrok-free.dev/api/juguete/obtener/'.$mascota->id);
+    return response()->json([
+        'mascota'=>$mascota,
+        'data'=>$response->json(),
+        'message'=>'el juegete'
+    ],200);
     }
 }

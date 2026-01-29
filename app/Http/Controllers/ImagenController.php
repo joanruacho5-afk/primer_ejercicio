@@ -22,4 +22,6 @@ class ImagenController extends Controller
             'code'=>200
         ],200);
     }
+
+
 }
