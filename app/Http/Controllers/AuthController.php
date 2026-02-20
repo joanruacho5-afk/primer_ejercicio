@@ -16,6 +16,8 @@ class AuthController extends Controller
            'email'=>$request->email,
            'password'=>Hash::make($request->password)
         ]);
+
+
         /** @var \Illuminate\Http\Client\Response\ $response*/
         $response = Http::withoutVerifying()->post('https://urbanely-uncapsuled-cheyenne.ngrok-free.dev/api/create',[
             'name'=>$request->name,
@@ -37,16 +39,9 @@ class AuthController extends Controller
                 'error'=>'el email o la contraseña es incorrecta'
             ]);
         }
-        /** @var \Illuminate\Http\Client\Response\ $response*/
-        $response = Http::withoutVerifying()->post('https://urbanely-uncapsuled-cheyenne.ngrok-free.dev/api/login',[
-            'email'=>$request->email,
-            'password'=>$request->password
-        ]);
-        
+        $token = $user->createToken('token')->plainTextToken;
         return response()->json([
-            'token-jugetes'=>$response->json(),
-            'token'=>$user->createToken('token')->plainTextToken,
-            'type'=>'bearer'
+            'token'=>$token
         ]);
     }
 }
