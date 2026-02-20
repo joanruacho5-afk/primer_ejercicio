@@ -11,8 +11,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-
-Route::post('/create1 ', [DulceController::class, 'create'])->middleware([ApiMiddleware::class,'auth:sanctum']);
+  
+Route::post('/create1', [DulceController::class, 'create'])->middleware([ApiMiddleware::class,'auth:sanctum']);
 Route::post('/createimg', [ImageController::class, 'create']);
 Route::get('/index/{id}',[DulceController::class, 'index']);
 Route::post('/login',[AuthController::class, 'login']);
